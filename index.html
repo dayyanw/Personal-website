@@ -617,15 +617,6 @@
         align-items: center;
         gap: 0.5rem;
       }
-      .yt-dot {
-        width: 14px; height: 14px;
-        background: #ff0000;
-        border-radius: 3px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .yt-dot svg { display: block; }
 
       .vid-grid {
         display: grid;
@@ -733,22 +724,6 @@
         justify-content: space-between;
         padding-top: 0.85rem;
         border-top: 1px solid var(--border);
-      }
-      .vid-yt-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.58rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--text-dim);
-      }
-      .vid-yt-badge span {
-        width: 14px; height: 10px;
-        background: #ff0000;
-        border-radius: 3px;
-        display: inline-block;
       }
       .vid-watch {
         font-family: 'JetBrains Mono', monospace;
@@ -1117,7 +1092,7 @@
                 <div class="stat-l">Years old</div>
               </div>
               <div>
-                <div class="stat-n">3+</div>
+                <div class="stat-n">∞</div>
                 <div class="stat-l">Projects</div>
               </div>
               <div>
@@ -1242,12 +1217,7 @@
         <!-- YouTube videos -->
         <div class="vid-divider">
           <div class="vid-divider-line"></div>
-          <div class="vid-divider-label">
-            <span class="yt-dot">
-              <svg width="7" height="7" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-            </span>
-            On YouTube
-          </div>
+          <div class="vid-divider-label">Videos</div>
           <div class="vid-divider-line"></div>
         </div>
 
@@ -1428,15 +1398,27 @@
           desc:  'Scan your fridge, get recipes. AI-powered ingredient scanning app on the App Store. Built it because I kept throwing away food and didn\'t know what to cook.',
           tags:  ['iOS App', 'AI', 'App Store'],
           href:  'https://apps.apple.com/us/app/pantrio-ai/id6763900379',
-          visual: { bg: 'linear-gradient(135deg, #1c0e04 0%, #3a1a06 100%)', emoji: '🥗' },
+          visual: `
+            <div style="width:100%;height:100%;background:#1c1007;display:flex;align-items:center;justify-content:center;">
+              <img
+                src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ed/2a/2c/ed2a2c42-769f-b81f-de42-eae7fd745dad/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/200x200bb.jpg"
+                alt="Pantrio AI"
+                style="width:72px;height:72px;border-radius:18px;box-shadow:0 6px 28px rgba(0,0,0,0.55);display:block;"
+                onerror="this.style.display='none'"
+              />
+            </div>`,
         },
         {
           idx: '02',
-          title: 'MG-1 Habit Tracker',
-          desc:  'Info and support site for a habit tracker app. Built with Next.js. Simple, fast, gets the job done.',
+          title: 'MG-1',
+          desc:  'Habit tracking app focused on productivity, routines, and goals. Info and support site built with Next.js.',
           tags:  ['Next.js', 'TypeScript'],
           href:  'https://github.com/dayyanw/mg-1-web',
-          visual: { bg: 'linear-gradient(135deg, #080d1c 0%, #101a38 100%)', emoji: '✓' },
+          visual: `
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#061412 0%,#0c2420 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.3rem;">
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:0.1em;color:#2dd4bf;line-height:1;text-shadow:0 0 30px rgba(45,212,191,0.3)">MG-1</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(45,212,191,0.45)">Habit Tracker</span>
+            </div>`,
         },
         {
           idx: '03',
@@ -1444,7 +1426,10 @@
           desc:  'A website I made to document my own life timeline. Has a star on GitHub — which means at least one person found it interesting.',
           tags:  ['CSS', 'Personal'],
           href:  'https://github.com/dayyanw/info.me',
-          visual: { bg: 'linear-gradient(135deg, #111110 0%, #1e1e1c 100%)', emoji: '◉' },
+          visual: `
+            <div style="width:100%;height:100%;background:linear-gradient(135deg,#111110 0%,#1e1e1c 100%);display:flex;align-items:center;justify-content:center;">
+              <span style="font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:rgba(233,231,225,0.2);letter-spacing:0.04em">info.me</span>
+            </div>`,
         },
       ];
 
@@ -1456,9 +1441,7 @@
         a.target = '_blank';
         a.rel = 'noopener';
         a.innerHTML = `
-          <div class="proj-visual" style="background:${p.visual.bg}">
-            <span style="font-size:2.2rem;opacity:0.7">${p.visual.emoji}</span>
-          </div>
+          <div class="proj-visual">${p.visual}</div>
           <div class="proj-idx">${p.idx}</div>
           <div class="proj-title">${p.title}</div>
           <div class="proj-desc">${p.desc}</div>
@@ -1514,7 +1497,7 @@
             <div class="vid-title">${v.title}</div>
             <div class="vid-desc">${v.desc}</div>
             <div class="vid-footer">
-              <div class="vid-yt-badge"><span></span>YouTube</div>
+              <div class="tags"><span class="tag">Video</span></div>
               <span class="vid-watch">Watch ↗</span>
             </div>
           </div>`;
